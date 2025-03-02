@@ -1,0 +1,42 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Сканер</title>
+</head>
+<body>
+<div class="header">
+        <div class="home">
+            <a href="@">
+                <img src="{% static 'main/img/home.png' %}">
+            </a>
+        </div>
+        <div class="select">
+            <form>
+                <select id="scan" name="scan">
+                    <option value="Nmap">Nmap</option>
+                    <option value="Scanvus">Scanvus</option>
+                    <option value="Nuclei">Nuclei</option>
+                </select>
+            </form>
+        </div>
+        <div class="comp-name">
+            SutolgazTech
+        </div>
+        <div class="logo">
+            <img src="{% static 'main/img/logo.png' %}">
+        </div>
+</div>
+<div class="content">
+
+</div>
+
+
+
+</body>
+</html>
