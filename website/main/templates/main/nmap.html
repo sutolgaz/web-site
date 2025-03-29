@@ -1,0 +1,16 @@
+{% extends 'main/index.html' %}
+{% block content %}
+    <div class="name">Nmap</div>
+    <div>
+        <form>
+            <input type="text" id="command" name="command" placeholder="Введите команду">
+            <input type="submit" id="scan-button" value="Сканировать">
+        </form>
+    </div>
+    <div class="output-title">
+        <p>Вывод работы</p>
+        <div class="output">
+            <pre id="output"><code></code></pre>
+        </div>
+    </div>
+{% endblock %}

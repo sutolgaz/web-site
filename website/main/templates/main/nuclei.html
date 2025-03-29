@@ -1,0 +1,65 @@
+{% extends 'main/index.html' %}
+{% block content %}
+    <div class="name">Nuclei</div>
+    <div>
+        <form id="scan-form">
+            <input type="text" id="target" name="target" placeholder="URL для сканирования">
+            <label for="templates">Выберите шаблоны для сканирования:</label>
+            <select id="templates" name="templates[]" multiple>
+                <option value="cves">CVE шаблоны</option>
+                <option value="subdomain">Шаблоны для поддоменов</option>
+                <option value="vulnerabilities">Шаблоны для уязвимостей</option>
+            </select>
+            <button type="submit" id="scan-button">Сканировать</button>
+        </form>
+    </div>
+    <div id="loading" style="display: none;">Сканирование в процессе...</div>
+        <div id="error"></div>
+    <div class="output-title">
+        <p>Вывод работы</p>
+        <div class="output">
+            <pre id="output"><code></code></pre>
+        </div>
+    </div>
+    <script>
+        document.getElementById('scan-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Останавливаем отправку формы
+
+            const target = document.getElementById('target').value;
+            const selectedTemplates = Array.from(document.getElementById('templates').selectedOptions).map(option => option.value);
+
+            // Скрыть ошибки и результаты старого сканирования
+            document.getElementById('error').textContent = '';
+            document.getElementById('output').textContent = '';
+
+            // Показать индикатор загрузки
+            document.getElementById('loading').style.display = 'block';
+
+            console.log("123")
+            // Отправить запрос на сервер
+            fetch('api/scan/', {
+                method: 'POST',
+                body: JSON.stringify({ target: target, templates: selectedTemplates }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loading').style.display = 'none'; // Скрыть индикатор загрузки
+
+                if (data.error) {
+                    // Показать ошибку
+                    document.getElementById('error').textContent = `Ошибка: ${data.error}`;
+                } else {
+                    // Показать результаты
+                    document.getElementById('output').textContent = data.result;
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading').style.display = 'none'; // Скрыть индикатор загрузки
+                document.getElementById('error').textContent = `Произошла ошибка: ${error}`;
+            });
+        });
+    </script>
+{% endblock %}

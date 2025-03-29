@@ -1,3 +1,4 @@
+/* основные стили и стили индекса */
 body{
     margin: 0;
     font-family: "Inter", serif;
@@ -30,3 +31,42 @@ select{
     margin-left:15pypx;
     margin-right: 25px;
 }
+
+/* стили для контента */
+
+.name{
+    color:#fff;
+    font-size: 70px;
+}
+.content{
+    margin-top: 70px;
+    margin-left: 219px;
+}
+#target{
+    width: 790px;
+    height: 28px;
+    border-radius: 10px;
+}
+#scan-button{
+    margin-left: 10px;
+    height: 28px;
+}
+.output{
+    height: 400px;
+    width: 800px;
+    border-radius: 0px 0px 10px 10px;
+    background:#fff;
+}
+.output-title{
+    height: 400px;
+    width: 800px;
+    background:#212529;
+    border-radius: 10px;
+}
+
+.output-title  p{
+    color:#fff;
+    font-size: 12px;
+    margin-left:5px;
+    padding-top:7px;
+    }

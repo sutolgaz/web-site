@@ -12,16 +12,17 @@
 <body>
 <div class="header">
         <div class="home">
-            <a href="@">
-                <img src="{% static 'main/img/home.png' %}">
+            <a href="">
+                <img src="{% static 'main/img/home.png' %}?v={{ STATIC_VERSION }}">
             </a>
         </div>
         <div class="select">
             <form>
                 <select id="scan" name="scan">
-                    <option value="Nmap">Nmap</option>
-                    <option value="Scanvus">Scanvus</option>
-                    <option value="Nuclei">Nuclei</option>
+                    <option value="">Выберите сканнер</option>
+                    <option value="/nmap">Nmap</option>
+                    <option value="/scanvus">Scanvus</option>
+                    <option value="/nuclei">Nuclei</option>
                 </select>
             </form>
         </div>
@@ -32,11 +33,19 @@
             <img src="{% static 'main/img/logo.png' %}">
         </div>
 </div>
+<script>
+        const selector = document.getElementById('scan');
+
+        selector.addEventListener('change', function() {
+            const selectedValue = selector.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        });
+</script>
 <div class="content">
-
+    {% block content %}
+    {% endblock %}
 </div>
-
-
-
 </body>
 </html>
